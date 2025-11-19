@@ -1,0 +1,16 @@
+*.pth
+*.pt
+*.ckpt
+*.bin
+*.safetensors
+*.gguf
+*.h5
+*.onnx
+*.pb
+
+Vicuna-7b-delta-v0/
+Qwen/
+collm-datasets/
+collm-trained-models/
+dataset/
+minigpt4/Qwen/

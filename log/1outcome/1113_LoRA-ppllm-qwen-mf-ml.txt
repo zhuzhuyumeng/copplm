@@ -1,0 +1,827 @@
+W1114 08:55:34.709385 42848 site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+2025-11-14 08:55:34,721 [INFO] Building datasets...
+2025-11-14 08:55:34,918 [INFO] Movie OOD datasets, max history length:10
+2025-11-14 08:55:34,948 [INFO] Movie OOD datasets, max history length:10
+2025-11-14 08:55:35,112 [INFO] Movie OOD datasets, max history length:10
+2025-11-14 08:55:35,253 [INFO] 
+=====  Running Parameters    =====
+2025-11-14 08:55:35,253 [INFO] {
+    "amp": true,
+    "batch_size_eval": 64,
+    "batch_size_train": 16,
+    "device": "cuda",
+    "dist_url": "env://",
+    "distributed": false,
+    "evaluate": false,
+    "init_lr": 0.0001,
+    "iters_per_epoch": 50,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_epoch": 1000,
+    "min_lr": 8e-05,
+    "mode": "v2",
+    "num_workers": 0,
+    "output_dir": "Qwen/Qwen2.5-1.5rec_log/collm",
+    "resume_ckpt_path": null,
+    "seed": 42,
+    "task": "rec_pretrain",
+    "test_splits": [
+        "test",
+        "valid",
+        "test_warm",
+        "test_cold"
+    ],
+    "train_splits": [
+        "train"
+    ],
+    "valid_splits": [
+        "valid"
+    ],
+    "warmup_lr": 1e-05,
+    "warmup_steps": 200,
+    "weight_decay": 0.001,
+    "world_size": 1
+}
+2025-11-14 08:55:35,253 [INFO] 
+======  Dataset Attributes  ======
+2025-11-14 08:55:35,253 [INFO] 
+======== amazon_ood =======
+2025-11-14 08:55:35,253 [INFO] {
+    "build_info": {
+        "storage": "D:\\Pycoding\\CoLLM-main\\CoLLM-main\\collm-datasets\\ml-1m\\ml-1m\\"
+    },
+    "data_type": "default",
+    "path": "D:\\Pycoding\\CoLLM-main\\CoLLM-main\\collm-datasets\\ml-1m\\ml-1m\\"
+}
+2025-11-14 08:55:35,253 [INFO] 
+======  Model Attributes  ======
+2025-11-14 08:55:35,253 [INFO] {
+    "ans_type": "v2",
+    "arch": "mini_gpt4rec_v2",
+    "ckpt": "minigpt4/Qwen/Qwen2.5-1.5rec_log/collm/20251112212_best_tallrec/checkpoint_best.pth",
+    "end_sym": "###",
+    "freeze_lora": true,
+    "freeze_proj": false,
+    "freeze_rec": true,
+    "item_num": -100,
+    "llama_model": "Qwen/Qwen2-1.5B",
+    "lora_config": {
+        "alpha": 16,
+        "dropout": 0.05,
+        "r": 8,
+        "target_modules": [
+            "q_proj",
+            "v_proj"
+        ],
+        "use_lora": true
+    },
+    "max_txt_len": 1024,
+    "model_type": "pretrain_vicuna",
+    "proj_drop": 0,
+    "proj_mid_times": 10,
+    "proj_token_num": 1,
+    "prompt_path": "prompts/ppllm_movie.txt",
+    "prompt_template": "{}",
+    "rec_config": {
+        "embedding_size": 256,
+        "item_num": 3256,
+        "pretrained_path": "collm-trained-models/my-collm-trained-models/mf_0912_ml1m_oodv2_best_model_d256lr-0.001wd0.0001.pth",
+        "user_num": 839
+    },
+    "rec_model": "MF",
+    "user_num": -100
+}
+2025-11-14 08:55:35,266 [INFO] freeze rec encoder
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please submit your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+binary_path: D:\Anaconda3\envs\minigpt4\lib\site-packages\bitsandbytes\cuda_setup\libbitsandbytes_cuda116.dll
+CUDA SETUP: Loading binary D:\Anaconda3\envs\minigpt4\lib\site-packages\bitsandbytes\cuda_setup\libbitsandbytes_cuda116.dll...
+Not using distributed mode
+data path: D:\Pycoding\CoLLM-main\CoLLM-main\collm-datasets\ml-1m\ml-1m\train data size: (33891, 7)
+Movie OOD datasets, max history length: 10
+data path: D:\Pycoding\CoLLM-main\CoLLM-main\collm-datasets\ml-1m\ml-1m\valid_small data size: (5200, 7)
+Movie OOD datasets, max history length: 10
+data path: D:\Pycoding\CoLLM-main\CoLLM-main\collm-datasets\ml-1m\ml-1m\test data size: (7331, 7)
+Movie OOD datasets, max history length: 10
+data dir: D:\Pycoding\CoLLM-main\CoLLM-main\collm-datasets\ml-1m\ml-1m\
+正在计算全局流行度以进行偏见评估...
+已计算 3087 个物品的流行度。总物品数为 3256。
+正在将流行度数据注入评估任务...
+runing MiniGPT4Rec_v2 ...... 
+Loading Rec_model
+### rec_encoder: MF
+creat MF model, user num: 839 item num: 3256
+successfully load the pretrained model......
+freeze rec encoder
+Loading Rec_model Done
+Loading LLama model: Qwen/Qwen2-1.5B
+Loading LLAMA Done
+Setting Lora
+Setting Lora Done
+freeze lora...
+type: <class 'int'> 10
+Load 4 training prompts
+Prompt List: 
+['#Question: A user has given high ratings to the following movies: <ItemTitleList>. Additionally, we have information about the user\'s preferences encoded in the feature <UserID>. Using all available information, make a prediction about whether the user would enjoy the movie titled <TargetItemTitle> (<Popularity>) with the feature <TargetItemID>? Answer with "Yes" or "No". \\n#Answer:', '#Question: A user has given high ratings to the following movies: <ItemTitleList>. Additionally, we have information about the user\'s preferences encoded in the feature <UserID>. Using all available information, make a prediction about whether the user would enjoy the movie titled <TargetItemTitle> (<Popularity>) with the feature <TargetItemID>? Answer with "Yes" or "No". \\n#Answer:', '#Question: A user has given high ratings to the following movies: <ItemTitleList>. Additionally, we have information about the user\'s preferences encoded in the feature <UserID>. Using all available information, make a prediction about whether the user would enjoy the movie titled <TargetItemTitle> (<Popularity>) with the feature <TargetItemID>? Answer with "Yes" or "No". \\n#Answer:', '#Question: A user has given high ratings to the following movies: <ItemTitleList>. Additionally, we have information about the user\'s preferences encoded in the feature <UserID>. Using all available information, make a prediction about whether the user would enjoy the movie titled <TargetItemTitle> (<Popularity>) with the feature <TargetItemID>? Answer with "Yes" or "No". \\n#Answer:']
+Load MiniGPT4Rec Checkpoint: minigpt4/Qwen/Qwen2.5-1.5rec_log/collm/20251112212_best_tallrec/checkpoint_best.pth
+loading message, msg.... 
+ _IncompatibleKeys(missing_keys=['rec_encoder.user_embedding.weight', 'rec_encoder.item_embedding.weight', 'llama_model.base_model.model.model.embed_tokens.weight', 'llama_model.base_model.model.model.layers.0.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.0.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.0.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.0.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.0.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.0.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.0.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.0.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.0.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.0.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.0.input_layernorm.weight', 'llama_model.base_model.model.model.layers.0.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.1.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.1.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.1.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.1.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.1.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.1.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.1.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.1.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.1.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.1.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.1.input_layernorm.weight', 'llama_model.base_model.model.model.layers.1.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.2.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.2.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.2.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.2.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.2.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.2.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.2.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.2.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.2.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.2.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.2.input_layernorm.weight', 'llama_model.base_model.model.model.layers.2.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.3.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.3.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.3.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.3.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.3.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.3.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.3.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.3.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.3.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.3.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.3.input_layernorm.weight', 'llama_model.base_model.model.model.layers.3.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.4.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.4.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.4.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.4.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.4.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.4.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.4.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.4.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.4.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.4.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.4.input_layernorm.weight', 'llama_model.base_model.model.model.layers.4.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.5.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.5.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.5.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.5.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.5.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.5.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.5.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.5.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.5.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.5.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.5.input_layernorm.weight', 'llama_model.base_model.model.model.layers.5.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.6.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.6.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.6.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.6.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.6.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.6.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.6.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.6.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.6.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.6.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.6.input_layernorm.weight', 'llama_model.base_model.model.model.layers.6.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.7.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.7.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.7.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.7.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.7.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.7.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.7.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.7.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.7.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.7.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.7.input_layernorm.weight', 'llama_model.base_model.model.model.layers.7.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.8.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.8.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.8.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.8.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.8.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.8.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.8.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.8.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.8.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.8.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.8.input_layernorm.weight', 'llama_model.base_model.model.model.layers.8.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.9.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.9.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.9.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.9.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.9.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.9.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.9.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.9.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.9.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.9.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.9.input_layernorm.weight', 'llama_model.base_model.model.model.layers.9.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.10.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.10.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.10.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.10.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.10.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.10.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.10.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.10.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.10.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.10.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.10.input_layernorm.weight', 'llama_model.base_model.model.model.layers.10.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.11.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.11.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.11.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.11.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.11.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.11.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.11.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.11.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.11.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.11.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.11.input_layernorm.weight', 'llama_model.base_model.model.model.layers.11.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.12.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.12.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.12.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.12.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.12.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.12.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.12.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.12.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.12.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.12.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.12.input_layernorm.weight', 'llama_model.base_model.model.model.layers.12.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.13.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.13.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.13.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.13.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.13.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.13.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.13.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.13.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.13.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.13.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.13.input_layernorm.weight', 'llama_model.base_model.model.model.layers.13.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.14.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.14.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.14.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.14.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.14.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.14.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.14.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.14.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.14.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.14.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.14.input_layernorm.weight', 'llama_model.base_model.model.model.layers.14.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.15.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.15.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.15.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.15.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.15.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.15.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.15.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.15.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.15.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.15.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.15.input_layernorm.weight', 'llama_model.base_model.model.model.layers.15.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.16.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.16.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.16.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.16.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.16.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.16.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.16.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.16.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.16.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.16.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.16.input_layernorm.weight', 'llama_model.base_model.model.model.layers.16.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.17.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.17.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.17.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.17.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.17.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.17.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.17.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.17.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.17.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.17.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.17.input_layernorm.weight', 'llama_model.base_model.model.model.layers.17.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.18.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.18.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.18.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.18.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.18.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.18.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.18.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.18.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.18.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.18.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.18.input_layernorm.weight', 'llama_model.base_model.model.model.layers.18.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.19.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.19.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.19.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.19.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.19.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.19.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.19.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.19.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.19.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.19.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.19.input_layernorm.weight', 'llama_model.base_model.model.model.layers.19.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.20.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.20.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.20.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.20.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.20.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.20.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.20.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.20.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.20.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.20.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.20.input_layernorm.weight', 'llama_model.base_model.model.model.layers.20.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.21.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.21.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.21.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.21.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.21.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.21.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.21.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.21.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.21.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.21.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.21.input_layernorm.weight', 'llama_model.base_model.model.model.layers.21.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.22.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.22.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.22.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.22.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.22.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.22.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.22.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.22.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.22.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.22.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.22.input_layernorm.weight', 'llama_model.base_model.model.model.layers.22.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.23.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.23.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.23.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.23.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.23.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.23.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.23.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.23.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.23.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.23.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.23.input_layernorm.weight', 'llama_model.base_model.model.model.layers.23.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.24.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.24.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.24.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.24.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.24.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.24.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.24.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.24.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.24.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.24.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.24.input_layernorm.weight', 'llama_model.base_model.model.model.layers.24.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.25.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.25.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.25.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.25.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.25.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.25.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.25.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.25.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.25.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.25.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.25.input_layernorm.weight', 'llama_model.base_model.model.model.layers.25.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.26.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.26.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.26.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.26.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.26.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.26.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.26.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.26.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.26.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.26.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.26.input_layernorm.weight', 'llama_model.base_model.model.model.layers.26.post_attention_layernorm.weight', 'llama_model.base_model.model.model.layers.27.self_attn.q_proj.weight', 'llama_model.base_model.model.model.layers.27.self_attn.q_proj.bias', 'llama_model.base_model.model.model.layers.27.self_attn.k_proj.weight', 'llama_model.base_model.model.model.layers.27.self_attn.k_proj.bias', 'llama_model.base_model.model.model.layers.27.self_attn.v_proj.weight', 'llama_model.base_model.model.model.layers.27.self_attn.v_proj.bias', 'llama_model.base_model.model.model.layers.27.self_attn.o_proj.weight', 'llama_model.base_model.model.model.layers.27.mlp.gate_proj.weight', 'llama_model.base_model.model.model.layers.27.mlp.up_proj.weight', 'llama_model.base_model.model.model.layers.27.mlp.down_proj.weight', 'llama_model.base_model.model.model.layers.27.input_layernorm.weight', 'llama_model.base_model.model.model.layers.27.post_attention_layernorm.weight', 'llama_model.base_model.model.model.norm.weight', 'llama_proj.0.weight', 'llama_proj.0.bias', 'llama_proj.2.weight', 'llama_proj.2.bias'], unexpected_keys=[])2025-11-14 08:55:37,071 [INFO] Start training
+2025-11-14 08:55:37,078 [INFO] dataset_ratios not specified, datasets will be concatenated (map-style datasets) or chained (webdataset.DataPipeline).
+2025-11-14 08:55:37,078 [INFO] Loaded 33891 records for train split from the dataset.
+2025-11-14 08:55:37,078 [INFO] Loaded 5200 records for valid split from the dataset.
+2025-11-14 08:55:37,078 [INFO] Loaded 7331 records for test split from the dataset.
+2025-11-14 08:55:37,082 [INFO] number of trainable parameters: 4591616
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\runners\runner_base.py:153: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self._scaler = torch.cuda.amp.GradScaler()
+2025-11-14 08:55:37,083 [INFO] Start training epoch 0, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 08:56:04,332 [INFO] Averaged stats: lr: 0.000021  loss: 0.589896
+2025-11-14 08:56:04,332 [INFO] Evaluating on valid.
+2025-11-14 08:59:11,852 [INFO] Averaged stats: loss: 0.632608  acc: 0.651296 ***auc: 0.7041996852429923 ***uauc: 0.6594258684605101 ***u-nDCG: 0.8541796118776974
+2025-11-14 08:59:11,859 [INFO] Saving checkpoint at epoch 0 to D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\Qwen\Qwen2.5-1.5rec_log\collm\20251114085\checkpoint_best.pth.
+2025-11-14 08:59:12,314 [INFO] Start training
+2025-11-14 08:59:12,320 [INFO] Start training epoch 1, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 08:59:40,792 [INFO] Averaged stats: lr: 0.000021  loss: 0.542378
+2025-11-14 08:59:40,793 [INFO] Evaluating on valid.
+2025-11-14 09:02:53,464 [INFO] Averaged stats: loss: 0.644695  acc: 0.653011 ***auc: 0.7046602835248212 ***uauc: 0.6563008838658302 ***u-nDCG: 0.8548947949490759
+2025-11-14 09:02:53,470 [INFO] Saving checkpoint at epoch 1 to D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\Qwen\Qwen2.5-1.5rec_log\collm\20251114085\checkpoint_best.pth.
+2025-11-14 09:02:53,952 [INFO] Start training
+2025-11-14 09:02:53,958 [INFO] Start training epoch 2, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:03:20,631 [INFO] Averaged stats: lr: 0.000021  loss: 0.499875
+2025-11-14 09:03:20,634 [INFO] Evaluating on valid.
+2025-11-14 09:06:34,971 [INFO] Averaged stats: loss: 0.620233  acc: 0.649771 ***auc: 0.717258136531012 ***uauc: 0.6700235533493827 ***u-nDCG: 0.8632239954083155
+2025-11-14 09:06:34,978 [INFO] Saving checkpoint at epoch 2 to D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\Qwen\Qwen2.5-1.5rec_log\collm\20251114085\checkpoint_best.pth.
+2025-11-14 09:06:35,468 [INFO] Start training
+2025-11-14 09:06:35,473 [INFO] Start training epoch 3, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:07:02,045 [INFO] Averaged stats: lr: 0.000021  loss: 0.509285
+2025-11-14 09:07:02,048 [INFO] Evaluating on valid.
+2025-11-14 09:10:13,210 [INFO] Averaged stats: loss: 0.633834  acc: 0.610518 ***auc: 0.7144992240953185 ***uauc: 0.680360579785875 ***u-nDCG: 0.8654817223091602
+2025-11-14 09:10:13,216 [INFO] Start training
+2025-11-14 09:10:13,222 [INFO] Start training epoch 4, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:10:39,869 [INFO] Averaged stats: lr: 0.000100  loss: 0.554987
+2025-11-14 09:10:39,870 [INFO] Evaluating on valid.
+2025-11-14 09:13:51,127 [INFO] Averaged stats: loss: 0.617372  acc: 0.641387 ***auc: 0.720925995576059 ***uauc: 0.6790432049323393 ***u-nDCG: 0.8687171301624829
+2025-11-14 09:13:51,133 [INFO] Saving checkpoint at epoch 4 to D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\Qwen\Qwen2.5-1.5rec_log\collm\20251114085\checkpoint_best.pth.
+2025-11-14 09:13:51,616 [INFO] Start training
+2025-11-14 09:13:51,623 [INFO] Start training epoch 5, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:14:18,334 [INFO] Averaged stats: lr: 0.000100  loss: 0.497769
+2025-11-14 09:14:18,334 [INFO] Evaluating on valid.
+2025-11-14 09:17:30,812 [INFO] Averaged stats: loss: 0.619848  acc: 0.641768 ***auc: 0.7166309388706492 ***uauc: 0.6644505232892877 ***u-nDCG: 0.8578945022664324
+2025-11-14 09:17:30,819 [INFO] Start training
+2025-11-14 09:17:30,827 [INFO] Start training epoch 6, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:17:57,637 [INFO] Averaged stats: lr: 0.000100  loss: 0.508658
+2025-11-14 09:17:57,637 [INFO] Evaluating on valid.
+2025-11-14 09:21:09,431 [INFO] Averaged stats: loss: 0.622804  acc: 0.618902 ***auc: 0.7149499481715569 ***uauc: 0.6648538982887829 ***u-nDCG: 0.8618126815478505
+2025-11-14 09:21:09,436 [INFO] Start training
+2025-11-14 09:21:09,443 [INFO] Start training epoch 7, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:21:36,162 [INFO] Averaged stats: lr: 0.000100  loss: 0.471668
+2025-11-14 09:21:36,163 [INFO] Evaluating on valid.
+2025-11-14 09:24:44,957 [INFO] Averaged stats: loss: 0.648508  acc: 0.624809 ***auc: 0.7166269297946952 ***uauc: 0.6740000985503546 ***u-nDCG: 0.8688323285219028
+2025-11-14 09:24:44,964 [INFO] Start training
+2025-11-14 09:24:44,970 [INFO] Start training epoch 8, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:25:12,122 [INFO] Averaged stats: lr: 0.000100  loss: 0.487250
+2025-11-14 09:25:12,123 [INFO] Evaluating on valid.
+2025-11-14 09:28:26,098 [INFO] Averaged stats: loss: 0.655020  acc: 0.593559 ***auc: 0.6904149972701163 ***uauc: 0.662950317409888 ***u-nDCG: 0.8618646470400867
+2025-11-14 09:28:26,104 [INFO] Start training
+2025-11-14 09:28:26,110 [INFO] Start training epoch 9, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:28:52,843 [INFO] Averaged stats: lr: 0.000100  loss: 0.468794
+2025-11-14 09:28:52,845 [INFO] Evaluating on valid.
+
+answer token ids: pos: 9454 neg ids: 2753
+Prompt Pos Example 
+#Question: A user has given high ratings to the following movies: <ItemTitleList>. Additionally, we have information about the user's preferences encoded in the feature <UserID>. Using all available information, make a prediction about whether the user would enjoy the movie titled <TargetItemTitle> (<Popularity>) with the feature <TargetItemID>? Answer with "Yes" or "No". \n#Answer: Yes or No
+llama_proj.0.weight
+llama_proj.0.bias
+llama_proj.2.weight
+llama_proj.2.bias
+prompt example: <s>#Question: A user has given high ratings to the following movies: "Best in Show (2000)", "High Fidelity (2000)", "Bring It On (2000)", "28 Days (2000)", "Perfect Storm, The (2000)", "Return to Me (2000)", "Thomas Crown Affair, The (1999)". Additionally, we have information about the user's preferences encoded in the feature <unk>. Using all available information, make a prediction about whether the user would enjoy the movie titled "My Dog Skip (1999)" () with the feature <unk>? Answer with "Yes" or "No". \n#Answer:
+#######prmpt decoded example:  <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <|endoftext|> <s ># Question :  A  user  has  given  high  ratings  to  the  following  movies :  " Dave  ( 1 9 9 3 )",  " Add ams  Family ,  The  ( 1 9 9 1 )",  " Ham let  ( 1 9 9 0 )",  " Cour age  Under  Fire  ( 1 9 9 6 )",  " P ump  Up  the  Volume  ( 1 9 9 0 )",  " B ul worth  ( 1 9 9 8 )",  " M ight y  Aph rod ite  ( 1 9 9 5 )",  " Four  Wed dings  and  a  Funeral  ( 1 9 9 4 )",  " In  the  Name  of  the  Father  ( 1 9 9 3 )",  " S cream  ( 1 9 9 6 )".  Additionally ,  we  have  information  about  the  user 's  preferences  encoded  in  the  feature   <unk> .  Using  all  available  information ,  make  a  prediction  about  whether  the  user  would  enjoy  the  movie  titled  " Last  Sup per ,  The  ( 1 9 9 5 )"  ()  with  the  feature   <unk> ?  Answer  with  " Yes "  or  " No ".  \ n # Answer :
+Train: data epoch: [0]  [ 0/50]  eta: 0:00:39  lr: 0.000010  loss: 0.7479  time: 0.7950  data: 0.0000  max mem: 18607
+Train: data epoch: [0]  [49/50]  eta: 0:00:00  lr: 0.000032  loss: 0.5340  time: 0.5394  data: 0.0000  max mem: 21246
+Train: data epoch: [0] Total time: 0:00:27 (0.5450 s / it)
+Evaluation  [ 0/82]  eta: 0:02:09  loss: 0.6143  acc: 0.6250  time: 1.5822  data: 0.0035  max mem: 24847
+Evaluation  [16/82]  eta: 0:02:24  loss: 0.7122  acc: 0.5625  time: 2.1966  data: 0.0028  max mem: 29623
+Evaluation  [32/82]  eta: 0:01:53  loss: 0.6780  acc: 0.6094  time: 2.3284  data: 0.0024  max mem: 30669
+Evaluation  [48/82]  eta: 0:01:18  loss: 0.6954  acc: 0.6719  time: 2.3364  data: 0.0024  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:41  loss: 0.6801  acc: 0.6250  time: 2.3509  data: 0.0023  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6457  acc: 0.6250  time: 2.2887  data: 0.0026  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4571  acc: 0.7500  time: 2.1959  data: 0.0026  max mem: 31756
+Evaluation Total time: 0:03:07 (2.2857 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07785820960998535 uauc: 0.6594258684605101
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.002609729766845703 u-nDCG: 0.8541796118776974
+rank_0 auc: 0.7041996852429923
+Train: data epoch: [1]  [ 0/50]  eta: 0:00:24  lr: 0.000010  loss: 0.7002  time: 0.4975  data: 0.0000  max mem: 31756
+Train: data epoch: [1]  [49/50]  eta: 0:00:00  lr: 0.000032  loss: 0.3686  time: 0.6037  data: 0.0000  max mem: 31756
+Train: data epoch: [1] Total time: 0:00:28 (0.5694 s / it)
+Evaluation  [ 0/82]  eta: 0:02:25  loss: 0.6125  acc: 0.6250  time: 1.7689  data: 0.0056  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:33  loss: 0.7493  acc: 0.5469  time: 2.3267  data: 0.0041  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:57  loss: 0.6908  acc: 0.6406  time: 2.3798  data: 0.0025  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:20  loss: 0.7225  acc: 0.6562  time: 2.3461  data: 0.0025  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.7014  acc: 0.6406  time: 2.3796  data: 0.0027  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6657  acc: 0.5938  time: 2.4033  data: 0.0027  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4596  acc: 0.7500  time: 2.3105  data: 0.0025  max mem: 31756
+Evaluation Total time: 0:03:12 (2.3485 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07448434829711914 uauc: 0.6563008838658302
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.002567291259765625 u-nDCG: 0.8548947949490759
+rank_0 auc: 0.7046602835248212
+Train: data epoch: [2]  [ 0/50]  eta: 0:00:25  lr: 0.000010  loss: 0.6543  time: 0.5160  data: 0.0000  max mem: 31756
+Train: data epoch: [2]  [49/50]  eta: 0:00:00  lr: 0.000032  loss: 0.4536  time: 0.5309  data: 0.0000  max mem: 31756
+Train: data epoch: [2] Total time: 0:00:26 (0.5335 s / it)
+Evaluation  [ 0/82]  eta: 0:02:01  loss: 0.6109  acc: 0.6094  time: 1.4829  data: 0.0056  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:28  loss: 0.6996  acc: 0.5469  time: 2.2425  data: 0.0026  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:58  loss: 0.6525  acc: 0.6250  time: 2.4485  data: 0.0024  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:21  loss: 0.6636  acc: 0.6250  time: 2.4199  data: 0.0025  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:43  loss: 0.6686  acc: 0.6250  time: 2.3820  data: 0.0026  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6319  acc: 0.6094  time: 2.4085  data: 0.0026  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4393  acc: 0.7500  time: 2.3131  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:14 (2.3689 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07451963424682617 uauc: 0.6700235533493827
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.003254413604736328 u-nDCG: 0.8632239954083155
+rank_0 auc: 0.717258136531012
+Train: data epoch: [3]  [ 0/50]  eta: 0:00:25  lr: 0.000010  loss: 0.5931  time: 0.5130  data: 0.0000  max mem: 31756
+Train: data epoch: [3]  [49/50]  eta: 0:00:00  lr: 0.000032  loss: 0.4826  time: 0.5356  data: 0.0000  max mem: 31756
+Train: data epoch: [3] Total time: 0:00:26 (0.5314 s / it)
+Evaluation  [ 0/82]  eta: 0:02:02  loss: 0.6597  acc: 0.6094  time: 1.4947  data: 0.0061  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:29  loss: 0.6534  acc: 0.6250  time: 2.2615  data: 0.0028  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:56  loss: 0.5800  acc: 0.6406  time: 2.4037  data: 0.0026  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:20  loss: 0.6424  acc: 0.5312  time: 2.4090  data: 0.0026  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6587  acc: 0.6250  time: 2.3623  data: 0.0029  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6213  acc: 0.5781  time: 2.3185  data: 0.0025  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4638  acc: 0.7500  time: 2.2275  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:11 (2.3302 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07479166984558105 uauc: 0.680360579785875
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.0030312538146972656 u-nDCG: 0.8654817223091602
+rank_0 auc: 0.7144992240953185
+Train: data epoch: [4]  [ 0/50]  eta: 0:00:25  lr: 0.000100  loss: 0.6479  time: 0.5049  data: 0.0000  max mem: 31756
+Train: data epoch: [4]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.6898  time: 0.5401  data: 0.0000  max mem: 31756
+2025-11-14 09:32:05,321 [INFO] Averaged stats: loss: 0.625616  acc: 0.620427 ***auc: 0.7139718821230701 ***uauc: 0.6725091925474055 ***u-nDCG: 0.8609400335616864
+2025-11-14 09:32:05,327 [INFO] Start training
+2025-11-14 09:32:05,334 [INFO] Start training epoch 10, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:32:31,889 [INFO] Averaged stats: lr: 0.000100  loss: 0.443924
+2025-11-14 09:32:31,890 [INFO] Evaluating on valid.
+2025-11-14 09:35:45,800 [INFO] Averaged stats: loss: 0.643300  acc: 0.650724 ***auc: 0.7066367579701543 ***uauc: 0.659887510795214 ***u-nDCG: 0.8593555470739405
+2025-11-14 09:35:45,806 [INFO] Start training
+2025-11-14 09:35:45,813 [INFO] Start training epoch 11, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:36:12,658 [INFO] Averaged stats: lr: 0.000100  loss: 0.431441
+2025-11-14 09:36:12,659 [INFO] Evaluating on valid.
+2025-11-14 09:39:21,517 [INFO] Averaged stats: loss: 0.650773  acc: 0.636433 ***auc: 0.7090903866961635 ***uauc: 0.6505833344743922 ***u-nDCG: 0.8566655316431155
+2025-11-14 09:39:21,523 [INFO] Start training
+2025-11-14 09:39:21,530 [INFO] Start training epoch 12, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:39:48,412 [INFO] Averaged stats: lr: 0.000100  loss: 0.436657
+2025-11-14 09:39:48,413 [INFO] Evaluating on valid.
+2025-11-14 09:42:59,585 [INFO] Averaged stats: loss: 0.638447  acc: 0.638148 ***auc: 0.7129742161476967 ***uauc: 0.6666344138861358 ***u-nDCG: 0.863525480451732
+2025-11-14 09:42:59,592 [INFO] Start training
+2025-11-14 09:42:59,597 [INFO] Start training epoch 13, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:43:26,103 [INFO] Averaged stats: lr: 0.000100  loss: 0.449088
+2025-11-14 09:43:26,105 [INFO] Evaluating on valid.
+2025-11-14 09:46:36,143 [INFO] Averaged stats: loss: 0.653987  acc: 0.649200 ***auc: 0.6997773774971161 ***uauc: 0.649423491915963 ***u-nDCG: 0.8544454755318635
+2025-11-14 09:46:36,151 [INFO] Start training
+2025-11-14 09:46:36,157 [INFO] Start training epoch 14, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:47:02,818 [INFO] Averaged stats: lr: 0.000100  loss: 0.414280
+2025-11-14 09:47:02,820 [INFO] Evaluating on valid.
+2025-11-14 09:50:14,507 [INFO] Averaged stats: loss: 0.647634  acc: 0.659870 ***auc: 0.7097001374519115 ***uauc: 0.672273794673085 ***u-nDCG: 0.8626531808145933
+2025-11-14 09:50:14,512 [INFO] Start training
+2025-11-14 09:50:14,518 [INFO] Start training epoch 15, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:50:41,418 [INFO] Averaged stats: lr: 0.000100  loss: 0.385640
+2025-11-14 09:50:41,418 [INFO] Evaluating on valid.
+Train: data epoch: [4] Total time: 0:00:26 (0.5329 s / it)
+Evaluation  [ 0/82]  eta: 0:02:16  loss: 0.6048  acc: 0.6719  time: 1.6641  data: 0.0041  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:27  loss: 0.6604  acc: 0.6406  time: 2.2327  data: 0.0027  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:55  loss: 0.6182  acc: 0.6875  time: 2.3727  data: 0.0024  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:19  loss: 0.6210  acc: 0.6406  time: 2.3755  data: 0.0026  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6394  acc: 0.6562  time: 2.4475  data: 0.0025  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6369  acc: 0.5781  time: 2.3064  data: 0.0024  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4356  acc: 0.7500  time: 2.2112  data: 0.0023  max mem: 31756
+Evaluation Total time: 0:03:11 (2.3313 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07516980171203613 uauc: 0.6790432049323393
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.003115415573120117 u-nDCG: 0.8687171301624829
+rank_0 auc: 0.720925995576059
+Train: data epoch: [5]  [ 0/50]  eta: 0:00:26  lr: 0.000100  loss: 0.8080  time: 0.5297  data: 0.0000  max mem: 31756
+Train: data epoch: [5]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.4680  time: 0.5326  data: 0.0000  max mem: 31756
+Train: data epoch: [5] Total time: 0:00:26 (0.5342 s / it)
+Evaluation  [ 0/82]  eta: 0:01:58  loss: 0.5876  acc: 0.6562  time: 1.4446  data: 0.0052  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:29  loss: 0.6915  acc: 0.6094  time: 2.2650  data: 0.0025  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:55  loss: 0.6572  acc: 0.6562  time: 2.3607  data: 0.0025  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:19  loss: 0.6613  acc: 0.6250  time: 2.3685  data: 0.0024  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6664  acc: 0.6406  time: 2.4012  data: 0.0025  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6226  acc: 0.6094  time: 2.4252  data: 0.0025  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4356  acc: 0.8125  time: 2.3293  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:12 (2.3462 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07541775703430176 uauc: 0.6644505232892877
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.0015177726745605469 u-nDCG: 0.8578945022664324
+rank_0 auc: 0.7166309388706492
+Train: data epoch: [6]  [ 0/50]  eta: 0:00:26  lr: 0.000100  loss: 0.4358  time: 0.5273  data: 0.0000  max mem: 31756
+Train: data epoch: [6]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.3951  time: 0.5295  data: 0.0000  max mem: 31756
+Train: data epoch: [6] Total time: 0:00:26 (0.5362 s / it)
+Evaluation  [ 0/82]  eta: 0:02:00  loss: 0.6111  acc: 0.6406  time: 1.4643  data: 0.0051  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:28  loss: 0.6558  acc: 0.6406  time: 2.2425  data: 0.0029  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:57  loss: 0.6359  acc: 0.6875  time: 2.4343  data: 0.0026  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:20  loss: 0.7055  acc: 0.5312  time: 2.3918  data: 0.0023  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6837  acc: 0.6094  time: 2.3636  data: 0.0027  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.5898  acc: 0.5938  time: 2.3466  data: 0.0025  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4412  acc: 0.8125  time: 2.2507  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:11 (2.3379 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07325482368469238 uauc: 0.6648538982887829
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.003046274185180664 u-nDCG: 0.8618126815478505
+rank_0 auc: 0.7149499481715569
+Train: data epoch: [7]  [ 0/50]  eta: 0:00:31  lr: 0.000100  loss: 0.7666  time: 0.6250  data: 0.0000  max mem: 31756
+Train: data epoch: [7]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.6068  time: 0.5320  data: 0.0000  max mem: 31756
+Train: data epoch: [7] Total time: 0:00:26 (0.5344 s / it)
+Evaluation  [ 0/82]  eta: 0:01:59  loss: 0.6919  acc: 0.6094  time: 1.4562  data: 0.0190  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:25  loss: 0.7099  acc: 0.6875  time: 2.2075  data: 0.0033  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:54  loss: 0.6169  acc: 0.6719  time: 2.3602  data: 0.0025  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:19  loss: 0.6390  acc: 0.5938  time: 2.3847  data: 0.0027  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6961  acc: 0.6094  time: 2.3507  data: 0.0026  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6585  acc: 0.6250  time: 2.2946  data: 0.0024  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.5476  acc: 0.7500  time: 2.2040  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:08 (2.3013 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.0766596794128418 uauc: 0.6740000985503546
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.0030715465545654297 u-nDCG: 0.8688323285219028
+rank_0 auc: 0.7166269297946952
+Train: data epoch: [8]  [ 0/50]  eta: 0:00:25  lr: 0.000100  loss: 0.3187  time: 0.5031  data: 0.0000  max mem: 31756
+Train: data epoch: [8]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.7075  time: 0.5419  data: 0.0000  max mem: 31756
+Train: data epoch: [8] Total time: 0:00:27 (0.5430 s / it)
+Evaluation  [ 0/82]  eta: 0:02:12  loss: 0.6692  acc: 0.5625  time: 1.6125  data: 0.0042  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:27  loss: 0.7181  acc: 0.6094  time: 2.2362  data: 0.0029  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:54  loss: 0.6676  acc: 0.6094  time: 2.3487  data: 0.0026  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:19  loss: 0.6901  acc: 0.5469  time: 2.3583  data: 0.0022  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:43  loss: 0.6441  acc: 0.6250  time: 2.6110  data: 0.0026  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6886  acc: 0.5938  time: 2.3039  data: 0.0025  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.6061  acc: 0.8125  time: 2.2125  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:13 (2.3644 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07810282707214355 uauc: 0.662950317409888
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.003057718276977539 u-nDCG: 0.8618646470400867
+rank_0 auc: 0.6904149972701163
+Train: data epoch: [9]  [ 0/50]  eta: 0:00:27  lr: 0.000100  loss: 0.3697  time: 0.5441  data: 0.0000  max mem: 31756
+Train: data epoch: [9]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.5690  time: 0.5306  data: 0.0000  max mem: 31756
+Train: data epoch: [9] Total time: 0:00:26 (0.5347 s / it)
+Evaluation  [ 0/82]  eta: 0:02:00  loss: 0.6552  acc: 0.6094  time: 1.4698  data: 0.0046  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:30  loss: 0.6489  acc: 0.6562  time: 2.2840  data: 0.0027  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:56  loss: 0.6466  acc: 0.6562  time: 2.3837  data: 0.0025  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:20  loss: 0.7192  acc: 0.5781  time: 2.3850  data: 0.0026  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6396  acc: 0.5938  time: 2.4065  data: 0.0026  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6421  acc: 0.5781  time: 2.3877  data: 0.0027  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4238  acc: 0.8125  time: 2.2634  data: 0.0025  max mem: 31756
+Evaluation Total time: 0:03:12 (2.3462 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07512021064758301 uauc: 0.6725091925474055
+only one interaction users (for nDCG): 48
+2025-11-14 09:53:52,925 [INFO] Averaged stats: loss: 0.684941  acc: 0.601753 ***auc: 0.6830296111834808 ***uauc: 0.6314494378108203 ***u-nDCG: 0.849048614180798
+2025-11-14 09:53:52,930 [INFO] Start training
+2025-11-14 09:53:52,937 [INFO] Start training epoch 16, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:54:19,616 [INFO] Averaged stats: lr: 0.000100  loss: 0.412439
+2025-11-14 09:54:19,617 [INFO] Evaluating on valid.
+2025-11-14 09:57:30,988 [INFO] Averaged stats: loss: 0.693673  acc: 0.613377 ***auc: 0.6928548169567281 ***uauc: 0.6409459022406832 ***u-nDCG: 0.8527371640663796
+2025-11-14 09:57:30,994 [INFO] Start training
+2025-11-14 09:57:31,002 [INFO] Start training epoch 17, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 09:57:57,727 [INFO] Averaged stats: lr: 0.000100  loss: 0.400607
+2025-11-14 09:57:57,727 [INFO] Evaluating on valid.
+2025-11-14 10:01:09,264 [INFO] Averaged stats: loss: 0.690199  acc: 0.597561 ***auc: 0.679941806035263 ***uauc: 0.6340836512897535 ***u-nDCG: 0.8474388108638099
+2025-11-14 10:01:09,270 [INFO] Start training
+2025-11-14 10:01:09,276 [INFO] Start training epoch 18, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 10:01:35,957 [INFO] Averaged stats: lr: 0.000100  loss: 0.408607
+2025-11-14 10:01:35,959 [INFO] Evaluating on valid.
+2025-11-14 10:04:46,075 [INFO] Averaged stats: loss: 0.662669  acc: 0.645960 ***auc: 0.7001394564494822 ***uauc: 0.6307379246258549 ***u-nDCG: 0.8425371097208856
+2025-11-14 10:04:46,080 [INFO] Start training
+2025-11-14 10:04:46,088 [INFO] Start training epoch 19, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 10:05:12,545 [INFO] Averaged stats: lr: 0.000100  loss: 0.356913
+2025-11-14 10:05:12,547 [INFO] Evaluating on valid.
+2025-11-14 10:08:23,127 [INFO] Averaged stats: loss: 0.664147  acc: 0.633003 ***auc: 0.7008792052051467 ***uauc: 0.6216699851883745 ***u-nDCG: 0.8433275918490325
+2025-11-14 10:08:23,134 [INFO] Start training
+2025-11-14 10:08:23,139 [INFO] Start training epoch 20, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 10:08:51,189 [INFO] Averaged stats: lr: 0.000100  loss: 0.387962
+2025-11-14 10:08:51,191 [INFO] Evaluating on valid.
+2025-11-14 10:12:17,650 [INFO] Averaged stats: loss: 0.707306  acc: 0.589939 ***auc: 0.6979476797769884 ***uauc: 0.6631872940087853 ***u-nDCG: 0.8578398216359969
+2025-11-14 10:12:17,667 [INFO] Start training
+2025-11-14 10:12:17,683 [INFO] Start training epoch 21, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 10:12:46,840 [INFO] Averaged stats: lr: 0.000100  loss: 0.337897
+2025-11-14 10:12:46,840 [INFO] Evaluating on valid.
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.002596139907836914 u-nDCG: 0.8609400335616864
+rank_0 auc: 0.7139718821230701
+Train: data epoch: [10]  [ 0/50]  eta: 0:00:25  lr: 0.000100  loss: 0.4822  time: 0.5082  data: 0.0000  max mem: 31756
+Train: data epoch: [10]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.3975  time: 0.5347  data: 0.0000  max mem: 31756
+Train: data epoch: [10] Total time: 0:00:26 (0.5311 s / it)
+Evaluation  [ 0/82]  eta: 0:02:00  loss: 0.6179  acc: 0.6406  time: 1.4660  data: 0.0046  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:27  loss: 0.7695  acc: 0.5781  time: 2.2307  data: 0.0028  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:56  loss: 0.7168  acc: 0.6250  time: 2.4328  data: 0.0025  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:20  loss: 0.7549  acc: 0.6094  time: 2.3864  data: 0.0029  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6407  acc: 0.6719  time: 2.3600  data: 0.0028  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6794  acc: 0.6406  time: 2.4689  data: 0.0025  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4415  acc: 0.8125  time: 2.3755  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:13 (2.3637 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07383322715759277 uauc: 0.659887510795214
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.0030798912048339844 u-nDCG: 0.8593555470739405
+rank_0 auc: 0.7066367579701543
+Train: data epoch: [11]  [ 0/50]  eta: 0:00:26  lr: 0.000100  loss: 0.3654  time: 0.5288  data: 0.0000  max mem: 31756
+Train: data epoch: [11]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.3411  time: 0.5398  data: 0.0000  max mem: 31756
+Train: data epoch: [11] Total time: 0:00:26 (0.5369 s / it)
+Evaluation  [ 0/82]  eta: 0:01:59  loss: 0.6309  acc: 0.6406  time: 1.4516  data: 0.0046  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:25  loss: 0.7717  acc: 0.6406  time: 2.2072  data: 0.0028  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:55  loss: 0.6420  acc: 0.6406  time: 2.3847  data: 0.0024  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:19  loss: 0.6453  acc: 0.6719  time: 2.3894  data: 0.0027  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6582  acc: 0.7188  time: 2.3405  data: 0.0028  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6448  acc: 0.6406  time: 2.3025  data: 0.0025  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4737  acc: 0.7500  time: 2.2086  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:08 (2.3021 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07407689094543457 uauc: 0.6505833344743922
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.0030493736267089844 u-nDCG: 0.8566655316431155
+rank_0 auc: 0.7090903866961635
+Train: data epoch: [12]  [ 0/50]  eta: 0:00:26  lr: 0.000100  loss: 0.5137  time: 0.5273  data: 0.0000  max mem: 31756
+Train: data epoch: [12]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.5063  time: 0.5390  data: 0.0000  max mem: 31756
+Train: data epoch: [12] Total time: 0:00:26 (0.5376 s / it)
+Evaluation  [ 0/82]  eta: 0:02:10  loss: 0.6521  acc: 0.6250  time: 1.5921  data: 0.0046  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:26  loss: 0.7207  acc: 0.6406  time: 2.2167  data: 0.0028  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:54  loss: 0.6448  acc: 0.5938  time: 2.3396  data: 0.0024  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:18  loss: 0.6277  acc: 0.6562  time: 2.3631  data: 0.0026  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6454  acc: 0.6875  time: 2.4751  data: 0.0025  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.7019  acc: 0.5938  time: 2.3279  data: 0.0028  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.6355  acc: 0.6875  time: 2.2253  data: 0.0026  max mem: 31756
+Evaluation Total time: 0:03:11 (2.3303 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07378458976745605 uauc: 0.6666344138861358
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.0015482902526855469 u-nDCG: 0.863525480451732
+rank_0 auc: 0.7129742161476967
+Train: data epoch: [13]  [ 0/50]  eta: 0:00:25  lr: 0.000100  loss: 0.3658  time: 0.5104  data: 0.0000  max mem: 31756
+Train: data epoch: [13]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.4284  time: 0.5299  data: 0.0000  max mem: 31756
+Train: data epoch: [13] Total time: 0:00:26 (0.5301 s / it)
+Evaluation  [ 0/82]  eta: 0:01:58  loss: 0.6285  acc: 0.6094  time: 1.4480  data: 0.0046  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:27  loss: 0.7664  acc: 0.5625  time: 2.2388  data: 0.0027  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:54  loss: 0.6712  acc: 0.6250  time: 2.3502  data: 0.0026  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:18  loss: 0.6580  acc: 0.7031  time: 2.3312  data: 0.0026  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6486  acc: 0.6406  time: 2.3873  data: 0.0026  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.6960  acc: 0.6562  time: 2.3935  data: 0.0024  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.5223  acc: 0.8125  time: 2.2981  data: 0.0023  max mem: 31756
+Evaluation Total time: 0:03:09 (2.3164 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07592248916625977 uauc: 0.649423491915963
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.004191875457763672 u-nDCG: 0.8544454755318635
+rank_0 auc: 0.6997773774971161
+Train: data epoch: [14]  [ 0/50]  eta: 0:00:25  lr: 0.000100  loss: 0.4098  time: 0.5078  data: 0.0000  max mem: 31756
+Train: data epoch: [14]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.3980  time: 0.5276  data: 0.0000  max mem: 31756
+Train: data epoch: [14] Total time: 0:00:26 (0.5332 s / it)
+Evaluation  [ 0/82]  eta: 0:01:59  loss: 0.6776  acc: 0.6406  time: 1.4513  data: 0.0056  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:25  loss: 0.7650  acc: 0.5625  time: 2.2046  data: 0.0026  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:55  loss: 0.6666  acc: 0.6719  time: 2.3947  data: 0.0026  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:19  loss: 0.7349  acc: 0.6250  time: 2.3791  data: 0.0025  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6692  acc: 0.6094  time: 2.3837  data: 0.0026  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.7071  acc: 0.6094  time: 2.3783  data: 0.0025  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4430  acc: 0.8750  time: 2.2853  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:11 (2.3366 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07355093955993652 uauc: 0.672273794673085
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.0015184879302978516 u-nDCG: 0.8626531808145933
+rank_0 auc: 0.7097001374519115
+Train: data epoch: [15]  [ 0/50]  eta: 0:00:24  lr: 0.000100  loss: 0.4914  time: 0.4991  data: 0.0015  max mem: 31756
+Train: data epoch: [15]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.2892  time: 0.5349  data: 0.0000  max mem: 31756
+Train: data epoch: [15] Total time: 0:00:26 (0.5380 s / it)
+Evaluation  [ 0/82]  eta: 0:01:59  loss: 0.6695  acc: 0.6406  time: 1.4529  data: 0.0047  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:27  loss: 0.7911  acc: 0.6406  time: 2.2357  data: 0.0029  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:55  loss: 0.5858  acc: 0.7031  time: 2.3782  data: 0.0028  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:20  loss: 0.6601  acc: 0.5469  time: 2.4025  data: 0.0025  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6510  acc: 0.6406  time: 2.3864  data: 0.0027  max mem: 31756
+2025-11-14 10:16:13,912 [INFO] Averaged stats: loss: 0.695691  acc: 0.628049 ***auc: 0.7010887165448179 ***uauc: 0.6664761019753118 ***u-nDCG: 0.8593079221535822
+2025-11-14 10:16:13,928 [INFO] Start training
+2025-11-14 10:16:13,943 [INFO] Start training epoch 22, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 10:16:43,249 [INFO] Averaged stats: lr: 0.000100  loss: 0.347703
+2025-11-14 10:16:43,250 [INFO] Evaluating on valid.
+2025-11-14 10:20:09,504 [INFO] Averaged stats: loss: 0.703832  acc: 0.607470 ***auc: 0.6825610689918911 ***uauc: 0.6285243955995758 ***u-nDCG: 0.8444035562039937
+2025-11-14 10:20:09,518 [INFO] Start training
+2025-11-14 10:20:09,531 [INFO] Start training epoch 23, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 10:20:38,508 [INFO] Averaged stats: lr: 0.000100  loss: 0.292272
+2025-11-14 10:20:38,509 [INFO] Evaluating on valid.
+2025-11-14 10:24:04,451 [INFO] Averaged stats: loss: 0.720508  acc: 0.655678 ***auc: 0.706739286375571 ***uauc: 0.6365060953060317 ***u-nDCG: 0.8536285915442661
+2025-11-14 10:24:04,470 [INFO] Start training
+2025-11-14 10:24:04,491 [INFO] Start training epoch 24, 50 iters per inner epoch.
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\tasks\base_task.py:219: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+D:\Pycoding\CoLLM-main\CoLLM-main\minigpt4\models\rec_model.py:48: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2025-11-14 10:24:33,755 [INFO] Averaged stats: lr: 0.000100  loss: 0.314065
+2025-11-14 10:24:33,756 [INFO] Evaluating on valid.
+2025-11-14 10:28:00,085 [INFO] Averaged stats: loss: 0.683630  acc: 0.648438 ***auc: 0.6992217492667474 ***uauc: 0.6470599670452173 ***u-nDCG: 0.8553438967875373
+2025-11-14 10:28:00,096 [INFO] Early stop. The results has not changed up to 20 epochs.
+2025-11-14 10:28:00,096 [INFO] Training time 1:32:24
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.7647  acc: 0.5625  time: 2.3499  data: 0.0026  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.5273  acc: 0.8125  time: 2.2548  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:11 (2.3344 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07493281364440918 uauc: 0.6314494378108203
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.0030448436737060547 u-nDCG: 0.849048614180798
+rank_0 auc: 0.6830296111834808
+Train: data epoch: [16]  [ 0/50]  eta: 0:00:26  lr: 0.000100  loss: 0.6136  time: 0.5306  data: 0.0000  max mem: 31756
+Train: data epoch: [16]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.2337  time: 0.5298  data: 0.0000  max mem: 31756
+Train: data epoch: [16] Total time: 0:00:26 (0.5336 s / it)
+Evaluation  [ 0/82]  eta: 0:02:15  loss: 0.7220  acc: 0.6094  time: 1.6477  data: 0.0057  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:28  loss: 0.8023  acc: 0.6406  time: 2.2452  data: 0.0028  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:55  loss: 0.6272  acc: 0.6562  time: 2.3646  data: 0.0028  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:19  loss: 0.6459  acc: 0.6562  time: 2.3729  data: 0.0027  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.7346  acc: 0.6562  time: 2.4425  data: 0.0027  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.8812  acc: 0.4688  time: 2.3076  data: 0.0026  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.6410  acc: 0.7500  time: 2.2134  data: 0.0024  max mem: 31756
+Evaluation Total time: 0:03:11 (2.3327 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07519865036010742 uauc: 0.6409459022406832
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.003063678741455078 u-nDCG: 0.8527371640663796
+rank_0 auc: 0.6928548169567281
+Train: data epoch: [17]  [ 0/50]  eta: 0:00:25  lr: 0.000100  loss: 0.3854  time: 0.5072  data: 0.0000  max mem: 31756
+Train: data epoch: [17]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.5637  time: 0.5306  data: 0.0000  max mem: 31756
+Train: data epoch: [17] Total time: 0:00:26 (0.5345 s / it)
+Evaluation  [ 0/82]  eta: 0:01:58  loss: 0.6932  acc: 0.6562  time: 1.4404  data: 0.0061  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:28  loss: 0.7549  acc: 0.5938  time: 2.2512  data: 0.0030  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:56  loss: 0.5871  acc: 0.6250  time: 2.3945  data: 0.0025  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:19  loss: 0.6498  acc: 0.5625  time: 2.3637  data: 0.0025  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6875  acc: 0.6250  time: 2.3867  data: 0.0026  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.7409  acc: 0.5469  time: 2.3679  data: 0.0028  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4917  acc: 0.7500  time: 2.2725  data: 0.0028  max mem: 31756
+Evaluation Total time: 0:03:11 (2.3347 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.0746457576751709 uauc: 0.6340836512897535
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.003062725067138672 u-nDCG: 0.8474388108638099
+rank_0 auc: 0.679941806035263
+Train: data epoch: [18]  [ 0/50]  eta: 0:00:26  lr: 0.000100  loss: 0.3820  time: 0.5241  data: 0.0000  max mem: 31756
+Train: data epoch: [18]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.5268  time: 0.5325  data: 0.0000  max mem: 31756
+Train: data epoch: [18] Total time: 0:00:26 (0.5336 s / it)
+Evaluation  [ 0/82]  eta: 0:01:59  loss: 0.6837  acc: 0.6250  time: 1.4606  data: 0.0045  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:26  loss: 0.7292  acc: 0.5625  time: 2.2150  data: 0.0029  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:54  loss: 0.6232  acc: 0.6562  time: 2.3660  data: 0.0027  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:19  loss: 0.7709  acc: 0.6250  time: 2.3629  data: 0.0025  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.7164  acc: 0.6562  time: 2.3542  data: 0.0026  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.7621  acc: 0.5938  time: 2.3605  data: 0.0027  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.5642  acc: 0.8125  time: 2.2654  data: 0.0026  max mem: 31756
+Evaluation Total time: 0:03:10 (2.3174 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07366394996643066 uauc: 0.6307379246258549
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.0030858516693115234 u-nDCG: 0.8425371097208856
+rank_0 auc: 0.7001394564494822
+Train: data epoch: [19]  [ 0/50]  eta: 0:00:26  lr: 0.000100  loss: 0.4985  time: 0.5300  data: 0.0000  max mem: 31756
+Train: data epoch: [19]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.4032  time: 0.5285  data: 0.0000  max mem: 31756
+Train: data epoch: [19] Total time: 0:00:26 (0.5291 s / it)
+Evaluation  [ 0/82]  eta: 0:01:58  loss: 0.6816  acc: 0.6094  time: 1.4473  data: 0.0046  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:26  loss: 0.7633  acc: 0.5781  time: 2.2237  data: 0.0027  max mem: 31756
+Evaluation  [32/82]  eta: 0:01:54  loss: 0.6014  acc: 0.6562  time: 2.3583  data: 0.0025  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:19  loss: 0.6535  acc: 0.6562  time: 2.4039  data: 0.0028  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:42  loss: 0.6558  acc: 0.6875  time: 2.3632  data: 0.0030  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:04  loss: 0.8053  acc: 0.5469  time: 2.3284  data: 0.0026  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.6419  acc: 0.7500  time: 2.2379  data: 0.0025  max mem: 31756
+Evaluation Total time: 0:03:10 (2.3230 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.07596158981323242 uauc: 0.6216699851883745
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.0030519962310791016 u-nDCG: 0.8433275918490325
+rank_0 auc: 0.7008792052051467
+Train: data epoch: [20]  [ 0/50]  eta: 0:00:25  lr: 0.000100  loss: 0.3087  time: 0.5035  data: 0.0000  max mem: 31756
+Train: data epoch: [20]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.5257  time: 0.5930  data: 0.0000  max mem: 31756
+Train: data epoch: [20] Total time: 0:00:28 (0.5610 s / it)
+Evaluation  [ 0/82]  eta: 0:02:26  loss: 0.7184  acc: 0.5781  time: 1.7867  data: 0.0160  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:43  loss: 0.7437  acc: 0.6250  time: 2.4751  data: 0.0083  max mem: 31756
+Evaluation  [32/82]  eta: 0:02:05  loss: 0.5860  acc: 0.7500  time: 2.5486  data: 0.0066  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:26  loss: 0.7001  acc: 0.5938  time: 2.5820  data: 0.0040  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:45  loss: 0.7169  acc: 0.5156  time: 2.5654  data: 0.0044  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:05  loss: 0.7702  acc: 0.5469  time: 2.5226  data: 0.0057  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.5544  acc: 0.8125  time: 2.4223  data: 0.0056  max mem: 31756
+Evaluation Total time: 0:03:26 (2.5150 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.19331741333007812 uauc: 0.6631872940087853
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.007607936859130859 u-nDCG: 0.8578398216359969
+rank_0 auc: 0.6979476797769884
+Train: data epoch: [21]  [ 0/50]  eta: 0:00:28  lr: 0.000100  loss: 0.4280  time: 0.5777  data: 0.0000  max mem: 31756
+Train: data epoch: [21]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.4274  time: 0.5840  data: 0.0000  max mem: 31756
+Train: data epoch: [21] Total time: 0:00:29 (0.5831 s / it)
+Evaluation  [ 0/82]  eta: 0:02:07  loss: 0.7189  acc: 0.6406  time: 1.5545  data: 0.0284  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:43  loss: 0.7069  acc: 0.6406  time: 2.4724  data: 0.0058  max mem: 31756
+Evaluation  [32/82]  eta: 0:02:05  loss: 0.5322  acc: 0.7344  time: 2.5293  data: 0.0045  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:26  loss: 0.6898  acc: 0.5781  time: 2.5728  data: 0.0061  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:46  loss: 0.7355  acc: 0.6406  time: 2.5948  data: 0.0076  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:05  loss: 0.7393  acc: 0.5781  time: 2.5103  data: 0.0040  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4934  acc: 0.8125  time: 2.4142  data: 0.0034  max mem: 31756
+Evaluation Total time: 0:03:26 (2.5223 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.2157423496246338 uauc: 0.6664761019753118
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.007029294967651367 u-nDCG: 0.8593079221535822
+rank_0 auc: 0.7010887165448179
+Train: data epoch: [22]  [ 0/50]  eta: 0:00:26  lr: 0.000100  loss: 0.1619  time: 0.5354  data: 0.0000  max mem: 31756
+Train: data epoch: [22]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.3491  time: 0.5895  data: 0.0000  max mem: 31756
+Train: data epoch: [22] Total time: 0:00:29 (0.5861 s / it)
+Evaluation  [ 0/82]  eta: 0:02:11  loss: 0.6500  acc: 0.5781  time: 1.6025  data: 0.0118  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:39  loss: 0.8632  acc: 0.5938  time: 2.4242  data: 0.0039  max mem: 31756
+Evaluation  [32/82]  eta: 0:02:03  loss: 0.5435  acc: 0.7188  time: 2.5126  data: 0.0049  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:25  loss: 0.6195  acc: 0.6250  time: 2.5300  data: 0.0057  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:46  loss: 0.6298  acc: 0.7031  time: 2.6402  data: 0.0051  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:05  loss: 0.7771  acc: 0.5156  time: 2.5299  data: 0.0035  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.5637  acc: 0.8125  time: 2.4193  data: 0.0035  max mem: 31756
+Evaluation Total time: 0:03:26 (2.5126 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.20413756370544434 uauc: 0.6285243955995758
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.008757829666137695 u-nDCG: 0.8444035562039937
+rank_0 auc: 0.6825610689918911
+Train: data epoch: [23]  [ 0/50]  eta: 0:00:29  lr: 0.000100  loss: 0.2138  time: 0.5842  data: 0.0000  max mem: 31756
+Train: data epoch: [23]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.1539  time: 0.5803  data: 0.0000  max mem: 31756
+Train: data epoch: [23] Total time: 0:00:28 (0.5795 s / it)
+Evaluation  [ 0/82]  eta: 0:02:09  loss: 0.7160  acc: 0.6406  time: 1.5806  data: 0.0041  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:39  loss: 0.8065  acc: 0.5312  time: 2.4126  data: 0.0033  max mem: 31756
+Evaluation  [32/82]  eta: 0:02:04  loss: 0.6234  acc: 0.7500  time: 2.5319  data: 0.0046  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:25  loss: 0.7803  acc: 0.6250  time: 2.5648  data: 0.0059  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:46  loss: 0.8017  acc: 0.5938  time: 2.6174  data: 0.0047  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:05  loss: 0.7973  acc: 0.6094  time: 2.4827  data: 0.0046  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.7022  acc: 0.6875  time: 2.3808  data: 0.0044  max mem: 31756
+Evaluation Total time: 0:03:25 (2.5085 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.21837782859802246 uauc: 0.6365060953060317
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.009263277053833008 u-nDCG: 0.8536285915442661
+rank_0 auc: 0.706739286375571
+Train: data epoch: [24]  [ 0/50]  eta: 0:00:27  lr: 0.000100  loss: 0.6660  time: 0.5422  data: 0.0000  max mem: 31756
+Train: data epoch: [24]  [49/50]  eta: 0:00:00  lr: 0.000100  loss: 0.3022  time: 0.5871  data: 0.0000  max mem: 31756
+Train: data epoch: [24] Total time: 0:00:29 (0.5852 s / it)
+Evaluation  [ 0/82]  eta: 0:02:09  loss: 0.7009  acc: 0.6250  time: 1.5797  data: 0.0276  max mem: 31756
+Evaluation  [16/82]  eta: 0:02:41  loss: 0.7294  acc: 0.6094  time: 2.4540  data: 0.0061  max mem: 31756
+Evaluation  [32/82]  eta: 0:02:04  loss: 0.6417  acc: 0.6719  time: 2.5899  data: 0.0057  max mem: 31756
+Evaluation  [48/82]  eta: 0:01:25  loss: 0.7649  acc: 0.5938  time: 2.5378  data: 0.0051  max mem: 31756
+Evaluation  [64/82]  eta: 0:00:46  loss: 0.7204  acc: 0.6562  time: 2.6122  data: 0.0042  max mem: 31756
+Evaluation  [80/82]  eta: 0:00:05  loss: 0.7732  acc: 0.6562  time: 2.5616  data: 0.0041  max mem: 31756
+Evaluation  [81/82]  eta: 0:00:02  loss: 0.4768  acc: 0.7500  time: 2.4565  data: 0.0040  max mem: 31756
+Evaluation Total time: 0:03:26 (2.5130 s / it)
+only one interaction users: 48
+computed user: 239 can not users: 44
+uauc for validation Cost: 0.21146345138549805 uauc: 0.6470599670452173
+only one interaction users (for nDCG): 48
+computed user (for nDCG): 239 can not users: 44
+u-nDCG for validation Cost: 0.007376432418823242 u-nDCG: 0.8553438967875373
+rank_0 auc: 0.6992217492667474

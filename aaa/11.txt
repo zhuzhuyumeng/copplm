@@ -1,0 +1,22 @@
+baseline_train_mf_ood_amazon.py
+valid_auc:0.7262293222804438, valid_uauc:0.5674524655789324, test_auc:0.782665234273403, test_uauc:0.5726882317605602, acc: 0.6007301821571446
+valid_auc:0.7262293222804438, valid_uauc:0.5674524655789324, test_auc:0.782665234273403, test_uauc:0.5726882317605602, acc: 0.6007301821571446
+
+baseline_train_mf_ood.py
+valid_auc:0.6760080227104877, valid_uauc:0.6191863368703151, test_auc:0.7274569608834174, test_uauc:0.6627841164617347, acc: 0.5884049610614364
+自己训练
+valid_auc:0.676173276895907, valid_uauc:0.6162391373896398, test_auc:0.7277537767963755, test_uauc:0.6611439576359154, acc: 0.5885972502643977
+训练完的控制台打印的结果：{'valid_auc': 0.676173276895907, 'valid_uauc': 0.6162391373896398, 'test_auc': 0.6493660871840061, 'test_uauc': 0.6354343795924502, 'epoch': 467}
+第二个跑一遍的结果warm：   valid_auc:0.676173276895907, valid_uauc:0.6162391373896398, test_auc:0.7277537767963755, test_uauc:0.6611439576359154, acc: 0.5885972502643977
+第二个跑一遍的结果cold：   valid_auc:0.676173276895907, valid_uauc:0.6162391373896398, test_auc:0.31547619047619047, test_uauc:0.40625, acc: 0.5885972502643977
+第二个跑一遍的结果：       valid_auc:0.676173276895907, valid_uauc:0.6162391373896398, test_auc:0.6493660871840061, test_uauc:0.6354343795924502, acc: 0.5885972502643977   与上面一致
+
+两次训练结果一致，为什么？
+
+
+python train_collm_mf_din.py --cfg-path=train_configs/evaluate/article_evalutae_collm_pretrain_mf_ood.yaml > log/article_collm_evaluate_log_ndcg2.txt 2>&1
+log/article_collm_evaluate_log_ndcg2.txt，log/article_collm_evaluate_log_ndcg3.txt，在三个冻结参数上配置不同
+python train_collm_mf_din.py --cfg-path=train_configs/evaluate/article_evalutae_tallrec_pretrain_mf_ood.yaml > log/article_evalutae_tallrec_pretrain_mf_ood_log_ndcg.txt 2>&1
+python train_collm_mf_din.py --cfg-path=train_configs/evaluate/1027_evaluate_LoRA_collm_qwen_mf_ml.yaml > log/1027_evaluate_LoRA_collm_qwen_mf_ml_log_ndcg.txt 2>&1
+python train_collm_mf_din.py --cfg-path=train_configs/1LoRA/1027_LoRA-tallrec-qwen-mf-ml.yaml >
+python train_collm_mf_din.py --cfg-path=train_configs/evaluate/1027_evaluate_LoRA_tallrec_qwen_mf_ml.yaml > log/tallrec/1027_evaluate_LoRA_tallrec_qwen_mf_ml.txt 2>&1
