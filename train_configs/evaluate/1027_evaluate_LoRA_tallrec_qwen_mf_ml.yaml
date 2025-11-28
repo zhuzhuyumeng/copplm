@@ -34,7 +34,7 @@ model:
   
 
 datasets:
-  amazon_ood:
+  movie_ood:
     path: 'D:\Pycoding\CoLLM-main\CoLLM-main\collm-datasets\util\collm-datasets\ml-1m\ml-1m\my\'
     data_type: default
     build_info:
