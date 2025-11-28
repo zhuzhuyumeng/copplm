@@ -30,7 +30,7 @@ model:
     embedding_size: 256
     pretrained_path: collm-trained-models/0912_ml1m_oodv2_best_model_d256lr-0.001wd0.0001.pth
 #  ckpt: null
-  ckpt: minigpt4/Qwen/Qwen2.5-1.5rec_log/20251026143/checkpoint_best.pth # stage1 model/ tallrec
+  ckpt: minigpt4/Qwen/Qwen2.5-1.5rec_log/collm/merged_eval_model.pth # stage1 model/ tallrec
   # ckpt: /data/fengfl/collm/20241021220/checkpoint_best.pth
 
   
